@@ -6,7 +6,7 @@ export default function App() {
   const [altura, setAltura] = useState('')
   const [peso, setPeso] = useState('')
   const [imc, setImc] = useState('0')
-  const [resultado, setResultado] = useState('Resultado')
+  const [resultado, setResultado] = useState('')
 
   const defineImc = () => {
     let imc = peso/(altura*altura)
@@ -34,7 +34,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Calculadora IMC</Text>
+        <Text style={styles.titulo}>Calculadora de IMC</Text>
       </View>
       <View style={styles.containers}>
         <TextInput style={styles.inputs} placeholder='Altura' value={altura} onChangeText={dado_altura => setAltura(dado_altura)}/>
@@ -43,13 +43,14 @@ export default function App() {
       <View style={styles.containers}>
         <TouchableOpacity style={styles.botao} onPress={() => { defineImc() }
         }>
-          <Text style={styles.colorWhite}>Calcular</Text>
+          <Text style={styles.textoBotao}>Calcular</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.containers}>
         <View style={styles.boxResultado}>
+          <Text style={styles.stringImc}>IMC</Text>
           <Text style={styles.imc}>{imc}</Text>
-          <Text>{resultado}</Text>
+          <Text style={styles.stringResultado}>{resultado}</Text>
         </View>
       </View>
     </View>
@@ -63,8 +64,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 8,
   },
+  titulo: {
+    fontSize: '1.4em',
+    marginBottom: 8
+  },
   inputs: {
-    borderWidth: 1,
+    //borderWidth: 1,
     borderColor: 'gray',
     padding: 12,
     borderRadius: 5,
@@ -80,8 +85,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial',
     width: '70%'
   },
-  colorWhite: {
-    color: 'white'
+  textoBotao: {
+    color: 'white',
+    fontSize: '1em'
   },
   containers: {
     width: '100%',
@@ -101,6 +107,9 @@ const styles = StyleSheet.create({
 	},
   imc: {
     fontSize: 50
+  },
+  stringResultado: {
+    fontSize: '1.1em'
   }
 });
 
