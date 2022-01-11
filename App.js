@@ -2,17 +2,35 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Constants from 'expo-constants';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
-
 export default function App() {
   const [altura, setAltura] = useState('')
   const [peso, setPeso] = useState('')
-  const [imc, setImc] = useState(0)
-  const [strResultado, setStrResultado] = useState('Resultado')
+  const [imc, setImc] = useState('0')
+  const [resultado, setResultado] = useState('Resultado')
+
+  const defineImc = () => {
+    let imc = peso/(altura*altura)
+    let imc_str = String(imc)
+    if (!imc_str.includes('.')) {
+      setImc(imc_str)
+    } else {
+      setImc(imc.toFixed(2))
+    }
+    if (imc < 17) {
+      setResultado('Muito abaixo do peso')
+    } else if (imc >= 17 && imc <= 18.49) {
+      setResultado('Abaixo do peso')
+    } else if (imc >= 25 && imc < 30) {
+      setResultado('Acima do peso')
+    } else if (imc >= 30 && imc < 35) {
+      setResultado('Obesidade I')
+    } else if (imc >= 35 && imc < 40) {
+      setResultado('Obesidade severa')
+    } else if (imc > 40) {
+      setResultado('Obesidade mórbida')
+    }
+  } 
+
   return (
     <View style={styles.container}>
       <View>
@@ -23,15 +41,15 @@ export default function App() {
         <TextInput style={[styles.inputs, styles.marginTop15]} placeholder='Peso' value={peso} onChangeText={dado_peso => setPeso(dado_peso)}/>
       </View>
       <View style={styles.containers}>
-        <TouchableOpacity style={styles.botao} onPress={() => {
-          setImc(parseFloat(peso)/(parseFloat(altura)*parseFloat(altura)))}}>
+        <TouchableOpacity style={styles.botao} onPress={() => { defineImc() }
+        }>
           <Text style={styles.colorWhite}>Calcular</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.containers}>
         <View style={styles.boxResultado}>
           <Text style={styles.imc}>{imc}</Text>
-          <Text>{strResultado}</Text>
+          <Text>{resultado}</Text>
         </View>
       </View>
     </View>
@@ -85,3 +103,4 @@ const styles = StyleSheet.create({
     fontSize: 50
   }
 });
+
