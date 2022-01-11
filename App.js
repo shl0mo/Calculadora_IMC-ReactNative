@@ -66,10 +66,9 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: '1.4em',
-    marginBottom: 8
+    marginBottom: 6
   },
   inputs: {
-    //borderWidth: 1,
     borderColor: 'gray',
     padding: 12,
     borderRadius: 5,
