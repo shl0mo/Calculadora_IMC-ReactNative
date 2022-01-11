@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   titulo: {
-    fontSize: '1.4em',
+    fontSize: 20,
     marginBottom: 6
   },
   inputs: {
@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
     width: '70%'
   },
   textoBotao: {
-    color: 'white',
-    fontSize: '1em'
+    color: 'white'
   },
   containers: {
     width: '100%',
@@ -97,18 +96,18 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   boxResultado: {
-		backgroundColor: '#ecf0f1',
-		width: '70%',
-		height: 180,
+    backgroundColor: '#ecf0f1',
+    width: '70%',
+    height: 180,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
-	},
+  },
   imc: {
     fontSize: 50
   },
   stringResultado: {
-    fontSize: '1.1em'
+    fontSize: 17
   }
 });
 
