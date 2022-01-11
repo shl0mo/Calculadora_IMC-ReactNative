@@ -18,8 +18,10 @@ export default function App() {
     }
     if (imc < 17) {
       setResultado('Muito abaixo do peso')
-    } else if (imc >= 17 && imc <= 18.49) {
+    } else if (imc >= 17 && imc < 18.5) {
       setResultado('Abaixo do peso')
+    } else if (imc >= 18.5 && imc < 25) {
+      setResultado('Peso normal')
     } else if (imc >= 25 && imc < 30) {
       setResultado('Acima do peso')
     } else if (imc >= 30 && imc < 35) {
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   stringResultado: {
+    color: 'black',
     fontSize: 17
   }
 });
-
