@@ -11,7 +11,17 @@ export default function App() {
   const [corResultado, setCorResultado] = useState('#000')
 
   const defineImc = () => {
-    let imc = peso/(altura*altura)
+    let peso_str = String(peso)
+    let altura_str = String(altura)
+    if (peso_str.includes(',')) {
+      peso_str = peso_str.replace(',', '.')
+    }
+    if (altura_str.includes(',')) {
+      altura_str = altura_str.replace(',', '.')
+    }
+    let _peso = parseFloat(peso_str)
+    let _altura = parseFloat(altura_str)
+    let imc = _peso/(_altura*_altura)
     let imc_str = String(imc)
     if (!imc_str.includes('.')) {
       setImc(imc_str)
@@ -53,8 +63,8 @@ export default function App() {
         <Text style={styles.titulo}>Calculadora de IMC</Text>
       </View>
       <View style={styles.containers}>
-        <TextInput style={styles.inputs} placeholder='Altura' value={altura} onChangeText={dado_altura => setAltura(dado_altura)}/>
-        <TextInput style={[styles.inputs, styles.marginTop15]} placeholder='Peso' value={peso} onChangeText={dado_peso => setPeso(dado_peso)}/>
+        <TextInput style={styles.inputs} placeholder='Altura em metros (m)' value={altura} onChangeText={dado_altura => setAltura(dado_altura)}/>
+        <TextInput style={[styles.inputs, styles.marginTop15]} placeholder='Massa em quilogramas (kg)' value={peso} onChangeText={dado_peso => setPeso(dado_peso)}/>
       </View>
       <View style={styles.containers}>
         <TouchableOpacity style={styles.botao} onPress={() => { defineImc() }
