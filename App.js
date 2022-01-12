@@ -31,6 +31,7 @@ export default function App() {
     if (imc < 17) {
       setResultado('Muito abaixo do peso')
       setCorBgResultado('#1d3557')
+      setCorResultado('#FFF')
     } else if (imc >= 17 && imc < 18.5) {
       setResultado('Abaixo do peso')
       setCorBgResultado('#a8dadc')
@@ -63,8 +64,10 @@ export default function App() {
         <Text style={styles.titulo}>Calculadora de IMC</Text>
       </View>
       <View style={styles.containers}>
-        <TextInput style={styles.inputs} placeholder='Altura em metros (m)' value={altura} onChangeText={dado_altura => setAltura(dado_altura)}/>
-        <TextInput style={[styles.inputs, styles.marginTop15]} placeholder='Massa em quilogramas (kg)' value={peso} onChangeText={dado_peso => setPeso(dado_peso)}/>
+        <TextInput style={styles.inputs} placeholder='Altura em metros (m)' value={altura} onChangeText={dado_altura => {
+          setAltura(dado_altura)}}/>
+        <TextInput style={[styles.inputs, styles.marginTop15]} placeholder='Massa em quilogramas (kg)' value={peso} onChangeText={dado_peso => {
+          setPeso(dado_peso)}}/>
       </View>
       <View style={styles.containers}>
         <TouchableOpacity style={styles.botao} onPress={() => { defineImc() }
