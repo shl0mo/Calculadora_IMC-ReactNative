@@ -7,6 +7,8 @@ export default function App() {
   const [peso, setPeso] = useState('')
   const [imc, setImc] = useState('0')
   const [resultado, setResultado] = useState('')
+  const [corBgResultado, setCorBgResultado] = useState('#ecf0f1')
+  const [corResultado, setCorResultado] = useState('#000')
 
   const defineImc = () => {
     let imc = peso/(altura*altura)
@@ -18,20 +20,32 @@ export default function App() {
     }
     if (imc < 17) {
       setResultado('Muito abaixo do peso')
+      setCorBgResultado('#1d3557')
     } else if (imc >= 17 && imc < 18.5) {
       setResultado('Abaixo do peso')
+      setCorBgResultado('#a8dadc')
     } else if (imc >= 18.5 && imc < 25) {
       setResultado('Peso normal')
+      setCorBgResultado('#6a994e')
+      setCorResultado('#FFF')
     } else if (imc >= 25 && imc < 30) {
       setResultado('Acima do peso')
+      setCorBgResultado('#fb8b24')
+      setCorResultado('#FFF')
     } else if (imc >= 30 && imc < 35) {
       setResultado('Obesidade I')
+      setCorBgResultado('#ff002b')
+      setCorResultado('#FFF')
     } else if (imc >= 35 && imc < 40) {
       setResultado('Obesidade severa')
+      setCorBgResultado('#c1121f')
+      setCorResultado('#FFF')
     } else if (imc > 40) {
       setResultado('Obesidade mórbida')
+      setCorBgResultado('#780000')
+      setCorResultado('#FFF')
     }
-  } 
+  }
 
   return (
     <View style={styles.container}>
@@ -49,10 +63,10 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.containers}>
-        <View style={styles.boxResultado}>
-          <Text style={styles.stringImc}>IMC</Text>
-          <Text style={styles.imc}>{imc}</Text>
-          <Text style={styles.stringResultado}>{resultado}</Text>
+        <View style={[styles.boxResultado, { backgroundColor: corBgResultado }]}>
+          <Text style={[styles.stringImc, { color: corResultado }]}>IMC</Text>
+          <Text style={[styles.imc, { color: corResultado }]}>{imc}</Text>
+          <Text style={[styles.stringResultado, { color: corResultado }]}>{resultado}</Text>
         </View>
       </View>
     </View>
@@ -98,7 +112,6 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   boxResultado: {
-    backgroundColor: '#ecf0f1',
     width: '70%',
     height: 180,
     alignItems: 'center',
